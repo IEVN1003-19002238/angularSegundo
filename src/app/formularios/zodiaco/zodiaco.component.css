@@ -1,0 +1,21 @@
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.result-container {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.form-container, .result-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+}
