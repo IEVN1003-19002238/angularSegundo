@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+ 
 @Component({
   selector: 'app-zodiaco',
   standalone: true,
@@ -79,9 +79,9 @@ export class ZodiacoComponent {
       { signo: 'Cabra', img: 'https://www.hola.com/horizon/landscape/e13172afb3f6-cabra.jpg?im=Resize=(640),type=downsize', años: [1919, 1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027] },
       { signo: 'Mono', img: 'https://peopleenespanol.com/thmb/Wpxezb6zTd3sJ4sB90GtyUfFPpo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Horoscopo-chino-165967347-2000-141e78d49c344d73a216c09df52f7fcb.jpg', años: [1920, 1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028] },
       { signo: 'Gallo', img: 'https://revistasocialmente.mx/wp-content/uploads/2017/02/gallo-fondo-blanco-1024x915.jpg', años: [1921, 1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029] },
-      { signo: 'Perro', img: '', años: [1922, 1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030] },
-      { signo: 'Cerdo', img: '', años: [1923, 1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031] }
+      { signo: 'Perro', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2-0PDXeDGlp71cxA05l6kWjub7Pv33focWQ&s', años: [1922, 1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030] },
+      { signo: 'Cerdo', img: 'https://peopleenespanol.com/thmb/3_4ezJWMT8DtQSEuV5vMg3X8DUE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Horoscopo-chino-165969332-2000-eea5e27d3f4145c9b01121f4c61ccaef.jpg', años: [1923, 1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031] }
     ];
   }
-
+ 
 }
