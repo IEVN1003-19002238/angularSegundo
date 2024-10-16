@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './zodiaco.component.html',
   styleUrl: './zodiaco.component.css'
 })
-export class ZodiacoComponent {
+export default class ZodiacoComponent {
   formulario!: FormGroup;
   resultado: any = null;
  
