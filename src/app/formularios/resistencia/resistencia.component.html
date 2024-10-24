@@ -1,0 +1,65 @@
+<div >
+    <div>
+        <form [formGroup]="formulario" class="max-w-md mx-auto">
+            <div class="mb-5">
+                <label for="color1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Primera Banda</label>
+                <select id="color1" formControlName="color1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+                </select>
+            </div>
+            <div class="mb-5">
+                <label for="color2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Segunda Banda</label>
+                <select id="color2" formControlName="color2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+                </select>
+            </div>
+            <div class="mb-5">
+                <label for="color3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Tercera Banda</label>
+                <select id="color3" formControlName="color3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+                </select>
+            </div>
+            <div class="mb-5">
+                <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tolerancia</p>
+                <div class="flex items-center mb-2">
+                    <input type="radio" name="tolerancia" formControlName="tolerancia" value="oro" class="mr-2">
+                    <label class="text-gray-900 dark:text-dark">Oro</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" name="tolerancia" formControlName="tolerancia" value="plata" class="mr-2">
+                    <label class="text-gray-900 dark:text-dark">Plata</label>
+                </div>
+            </div>
+            <button (click)="calcular()" type="button" [disabled]="!formulario.valid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
+        </form>
+    </div>
+    <div>
+        <button (click)="imprimirTabla()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Imprimir Tabla</button>
+        <div *ngIf="resultado" class="mt-5 overflow-x-auto">
+            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+                <thead>
+                    <tr class="w-full bg-blue-700 text-white">
+                        <th class="px-4 py-2">Color1</th>
+                        <th class="px-4 py-2">Color2</th>
+                        <th class="px-4 py-2">Color3</th>
+                        <th class="px-4 py-2">Tolerancia</th>
+                        <th class="px-4 py-2">Valor</th>
+                        <th class="px-4 py-2">Valor Máximo</th>
+                        <th class="px-4 py-2">Valor Mínimo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let registro of registros" class="border-b">
+                        <td class="px-4 py-2" [ngStyle]="{'background-color': getColorCode(registro.color1)}">{{ registro.color1 }}</td>
+                        <td class="px-4 py-2" [ngStyle]="{'background-color': getColorCode(registro.color2)}">{{ registro.color2 }}</td>
+                        <td class="px-4 py-2" [ngStyle]="{'background-color': getColorCode(registro.color3)}">{{ registro.color3 }}</td>
+                        <td class="px-4 py-2" [ngStyle]="{'background-color': getToleranceColor(registro.tolerancia)}">{{ registro.tolerancia === 'oro' ? 'Dorado 5%' : 'Plata 10%' }}</td>
+                        <td class="px-4 py-2">{{ registro.valor }} Ω</td>
+                        <td class="px-4 py-2">{{ registro.valorMaximo }} Ω</td>
+                        <td class="px-4 py-2">{{ registro.valorMinimo }} Ω</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

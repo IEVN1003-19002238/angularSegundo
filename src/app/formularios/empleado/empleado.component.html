@@ -1,0 +1,121 @@
+<div class="grid grid-cols-2 gap-4">
+    <!-- Columna del Formulario -->
+    <div>
+        <form [formGroup]="formGroup" (ngSubmit)="registrarEmpleado()"
+            class="max-w-sm mx-auto p-6 space-y-6 bg-white rounded-lg shadow-md">
+            <div>
+                <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">Matrícula:</label>
+                <input id="matricula" formControlName="matricula" type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Ingresa la matrícula" required />
+            </div>
+
+            <div>
+                <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
+                <input id="nombre" formControlName="nombre" type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Ingresa el nombre" required />
+            </div>
+
+            <div>
+                <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">Correo:</label>
+                <input id="correo" formControlName="correo" type="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="correo@ejemplo.com" required />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="edad" class="block mb-2 text-sm font-medium text-gray-900">Edad:</label>
+                    <input id="edad" formControlName="edad" type="number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Edad" required />
+                </div>
+
+            </div>
+
+            <div>
+                <label for="horasTrabajadas" class="block mb-2 text-sm font-medium text-gray-900">Horas
+                    trabajadas:</label>
+                <input id="horasTrabajadas" formControlName="horasTrabajadas" type="number"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Horas" required />
+            </div>
+
+            <button type="submit"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-4">
+                {{ matriculaParaModificar ? 'Modificar' : 'Registrar' }}
+            </button>
+        </form>
+    </div>
+
+    <!-- Columna de Botones y Tabla -->
+    <div>
+        <div class="space-y-4">
+            <div *ngIf="mostrarBuscador">
+                <label for="matriculaBusqueda" class="block mb-2 text-sm font-medium text-gray-900">Matrícula para
+                    buscar:</label>
+                <input id="matriculaBusqueda" [(ngModel)]="matriculaBusqueda" type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Matrícula" />
+            </div>
+
+            <div>
+                <button (click)="buscarParaModificar()"
+                    class="text-white bg-blue-500 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                    Modificar
+                </button>
+                <br><br>
+                <button (click)="buscarYEliminar()"
+                    class="text-white bg-blue-600  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                    Eliminar
+                </button>
+                <br><br>
+                <button (click)="imprimirTabla()"
+                    class="text-white bg-blue-600  focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                    Imprimir tabla
+                </button>
+                <br><br>
+                <button (click)="activarBuscador()"
+                    class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                    buscar
+                </button>
+            </div>
+
+
+
+        </div>
+
+        <table *ngIf="mostrarTabla && empleados.length > 0"
+            class="min-w-full mt-6 bg-white border border-gray-300 text-left text-sm text-gray-700 shadow-md rounded-lg">
+            <thead class="bg-teal-500 text-white">
+                <tr>
+                    <th class="px-6 py-3">Matrícula</th>
+                    <th class="px-6 py-3">Nombre</th>
+                    <th class="px-6 py-3">Correo</th>
+                    <th class="px-6 py-3">Edad</th>
+                    <th class="px-6 py-3">Horas Trabajadas</th>
+                    <th class="px-6 py-3">Horas x Pagar</th>
+                    <th class="px-6 py-3">Horas Extras</th>
+                    <th class="px-6 py-3">SubTotal</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                <tr *ngFor="let empleado of empleados" class="hover:bg-gray-100">
+                    <td class="px-6 py-4">{{ empleado.matricula }}</td>
+                    <td class="px-6 py-4">{{ empleado.nombre }}</td>
+                    <td class="px-6 py-4">{{ empleado.correo }}</td>
+                    <td class="px-6 py-4">{{ empleado.edad }}</td>
+                    <td class="px-6 py-4">{{ empleado.horasTrabajadas }}</td>
+                    <td class="px-6 py-4">{{ empleado.horasPagar }}</td>
+                    <td class="px-6 py-4">{{ empleado.horasExtras }}</td>
+                    <td class="px-6 py-4">{{ empleado.subTotal }}</td>
+                </tr>
+                <tr class="bg-gray-100">
+                    <td colspan="7" class="text-right font-bold px-6 py-4">Total:</td>
+                    <td class="px-6 py-4 font-bold">{{ total }}</td>
+                  </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
