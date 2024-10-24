@@ -131,6 +131,7 @@ export default class EmpleadoComponent implements OnInit {
     this.mostrarTabla = true;
   }
 
+  
   activarBuscador(): void {
     this.mostrarBuscador = true;
   }
